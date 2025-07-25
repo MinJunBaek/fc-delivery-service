@@ -1,7 +1,7 @@
 package org.delivery.api.account;
 
 import lombok.RequiredArgsConstructor;
-import org.delivery.db.account.AccountEntity;
+import org.delivery.api.account.model.AccountMeResponse;
 import org.delivery.db.account.AccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +14,8 @@ public class AccountApiController {
 
   private final AccountRepository accountRepository;
 
-  @GetMapping("")
-  public void save() {
-    accountRepository.save(AccountEntity.from());
+  @GetMapping("/me")
+  public AccountMeResponse me() {
+    return AccountMeResponse.of("Lee@gmail.com", "홍길동");
   }
 }

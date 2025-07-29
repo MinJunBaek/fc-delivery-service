@@ -17,6 +17,9 @@ public class AccountApiController {
 
   @GetMapping("/me")
   public Api<AccountMeResponse> me() {
+
+    String str = "안녕하세요";
+    Integer age = Integer.parseInt(str);
     return Api.OK(AccountMeResponse.of("Lee@gmail.com", "홍길동"));
   }
 }

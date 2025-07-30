@@ -24,5 +24,5 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
   ORDER BY id DESC
   LIMIT 1;
    */
-  Optional<UserEntity> findFirstByEmailAndPasswordAndStatusOrderByIdDesc(String email, String password);
+  Optional<UserEntity> findFirstByEmailAndPasswordAndStatusOrderByIdDesc(String email, String password, UserStatus status);
 }

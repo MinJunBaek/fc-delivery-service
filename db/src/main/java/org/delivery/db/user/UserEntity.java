@@ -31,9 +31,20 @@ public class UserEntity extends BaseEntity {
   @Column(length = 150, nullable = false)
   private String address;
 
-  private LocalDateTime registered_at;
+  private LocalDateTime registeredAt;
 
-  private LocalDateTime unregistered_at;
+  private LocalDateTime unRegisteredAt;
 
-  private LocalDateTime last_login_at;
+  private LocalDateTime lastLoginAt;
+
+  public static UserEntity of(String name, String email, String address, String password) {
+    UserEntity entity = new UserEntity();
+    entity.name = name;
+    entity.email = email;
+    entity.address = address;
+    entity.password = password;
+    entity.status = UserStatus.REGISTERED;
+    entity.registeredAt = LocalDateTime.now();
+    return entity;
+  }
 }

@@ -1,5 +1,6 @@
 package org.delivery.api.domain.user.business;
 
+import java.util.Objects;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.delivery.api.common.annotation.Business;
@@ -13,6 +14,8 @@ import org.delivery.api.domain.user.controller.model.UserResponse;
 import org.delivery.api.domain.user.converter.UserConverter;
 import org.delivery.api.domain.user.service.UserService;
 import org.delivery.db.user.UserEntity;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 @RequiredArgsConstructor
 @Business
@@ -51,5 +54,13 @@ public class UserBusiness {
     // 토큰 생성
     TokenResponse tokenResponse = tokenBusiness.issueToken(entity);
     return tokenResponse;
+  }
+
+  public UserResponse me() {
+    RequestAttributes requestContext = Objects.requireNonNull(RequestContextHolder.getRequestAttributes());
+    Object userId = requestContext.getAttribute("userId", RequestAttributes.SCOPE_REQUEST);
+    UserEntity userEntity = userService.getUserWithThrow(Long.parseLong(userId.toString()));
+    UserResponse response = userConverter.toResponse(userEntity);
+    return response;
   }
 }

@@ -90,10 +90,8 @@ public class JwtTokenHelper implements TokenHelperInterface {
         .build();
 
     try {
-
       Jws<Claims> result = parser.parseClaimsJws(token);
       return new HashMap<String, Object>(result.getBody());
-
     } catch (Exception e) {
       if(e instanceof SignatureException) {
         // 토큰이 유효하지 않을때

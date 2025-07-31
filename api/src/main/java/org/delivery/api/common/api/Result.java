@@ -1,11 +1,14 @@
 package org.delivery.api.common.api;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.delivery.api.common.error.ErrorCode;
 import org.delivery.api.common.error.ErrorCodeInterface;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Result {
   private Integer resultCode;

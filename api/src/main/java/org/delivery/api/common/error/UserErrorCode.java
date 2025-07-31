@@ -2,6 +2,10 @@ package org.delivery.api.common.error;
 
 import lombok.Getter;
 
+/**
+ * User의 경우 1000 번대 에러코드 사용
+ */
+
 @Getter
 public enum UserErrorCode implements ErrorCodeInterface {
 

@@ -6,9 +6,7 @@ public enum UserStatus {
 
   UNREGISTERED("해지");
 
-  private final String description;
+  private String description;
 
-  UserStatus(String description) {
-    this.description = description;
-  }
+  UserStatus(String description) {}
 }

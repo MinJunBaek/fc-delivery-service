@@ -43,4 +43,19 @@ public class StoreEntity extends BaseEntity {
 
   @Column(length = 20)
   private String phoneNumber;
+
+  public static StoreEntity of(String name, String address, StoreCategory category,
+      String thumbnailUrl, BigDecimal minimumAmount, BigDecimal minimumDeliveryAmount, String phoneNumber) {
+    StoreEntity entity = new StoreEntity();
+    entity.name = name;
+    entity.address = address;
+    entity.status = StoreStatus.REGISTERED;
+    entity.category = category;
+    entity.star = 0;
+    entity.thumbnailUrl = thumbnailUrl;
+    entity.minimumAmount = minimumAmount;
+    entity.minimumDeliveryAmount = minimumDeliveryAmount;
+    entity.phoneNumber = phoneNumber;
+    return entity;
+  }
 }

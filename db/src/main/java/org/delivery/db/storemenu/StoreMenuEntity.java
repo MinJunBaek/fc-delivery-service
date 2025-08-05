@@ -28,4 +28,17 @@ public class StoreMenuEntity extends BaseEntity {
   private String thumbnailUrl;
   private int likeCount; // 기본이 0이기 때문에
   private int sequence; // 순서
+
+  public void register(StoreMenuStatus status) {
+    this.status = status;
+  }
+
+  public static StoreMenuEntity of(Long storeId, String name, BigDecimal amount, String thumbnailUrl) {
+    StoreMenuEntity entity = new StoreMenuEntity();
+    entity.storeId = storeId;
+    entity.name = name;
+    entity.amount = amount;
+    entity.thumbnailUrl = thumbnailUrl;
+    return entity;
+  }
 }

@@ -1,13 +1,15 @@
-package org.delivery.db.store.enums;
+package org.delivery.db.order.enums;
 
-public enum StoreStatus {
+public enum UserOrderStatus {
+
   REGISTERED("등록"),
   UNREGISTERED("해지"),
   ;
 
   private String description;
 
-  StoreStatus(String description) {
+  UserOrderStatus (String description) {
     this.description = description;
   }
+
 }

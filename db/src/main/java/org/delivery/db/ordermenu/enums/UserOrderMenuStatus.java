@@ -1,13 +1,14 @@
-package org.delivery.db.store.enums;
+package org.delivery.db.ordermenu.enums;
 
-public enum StoreStatus {
+public enum UserOrderMenuStatus {
+
   REGISTERED("등록"),
   UNREGISTERED("해지"),
   ;
 
   private String description;
 
-  StoreStatus(String description) {
+  UserOrderMenuStatus(String description) {
     this.description = description;
   }
 }

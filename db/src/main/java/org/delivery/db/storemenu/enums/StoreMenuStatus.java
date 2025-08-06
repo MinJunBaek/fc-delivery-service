@@ -7,5 +7,7 @@ public enum StoreMenuStatus {
 
   private String description;
 
-  StoreMenuStatus (String description) {}
+  StoreMenuStatus (String description) {
+    this.description = description;
+  }
 }

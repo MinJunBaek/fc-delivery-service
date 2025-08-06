@@ -15,5 +15,8 @@ public enum StoreCategory {
   private String display;
   private String description;
 
-  StoreCategory(String display, String description) {}
+  StoreCategory(String display, String description) {
+    this.display = display;
+    this.description = description;
+  }
 }

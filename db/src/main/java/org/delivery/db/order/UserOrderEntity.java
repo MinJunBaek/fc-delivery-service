@@ -32,4 +32,17 @@ public class UserOrderEntity extends BaseEntity {
   private LocalDateTime cookingStartedAt;
 
   private LocalDateTime deliveryStartedAt;
+
+  private LocalDateTime receivedAt;
+
+  public UserOrderEntity setStatus(UserOrderStatus status) {
+    switch(status) {
+      case ORDER -> {this.status = status; this.orderedAt = LocalDateTime.now();}
+      case ACCEPT -> {this.status = status; this.acceptedAt = LocalDateTime.now();}
+      case COOKING -> {this.status = status; this.cookingStartedAt = LocalDateTime.now();}
+      case DELIVERY -> {this.status = status; this.deliveryStartedAt = LocalDateTime.now();}
+      case RECEIVE -> {this.status = status; this.receivedAt = LocalDateTime.now();}
+    }
+    return this;
+  }
 }

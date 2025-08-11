@@ -6,10 +6,12 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.delivery.db.BaseEntity;
 import org.delivery.db.order.enums.UserOrderStatus;
+import org.delivery.db.storemenu.StoreMenuEntity;
 
 @Getter
 @Entity(name = "user_orders")
@@ -35,7 +37,7 @@ public class UserOrderEntity extends BaseEntity {
 
   private LocalDateTime receivedAt;
 
-  public UserOrderEntity setStatus(UserOrderStatus status) {
+  public void setStatus(UserOrderStatus status) {
     switch(status) {
       case ORDER -> {this.status = status; this.orderedAt = LocalDateTime.now();}
       case ACCEPT -> {this.status = status; this.acceptedAt = LocalDateTime.now();}
@@ -43,6 +45,12 @@ public class UserOrderEntity extends BaseEntity {
       case DELIVERY -> {this.status = status; this.deliveryStartedAt = LocalDateTime.now();}
       case RECEIVE -> {this.status = status; this.receivedAt = LocalDateTime.now();}
     }
-    return this;
+  }
+
+  public static UserOrderEntity of(Long userId, BigDecimal amount) {
+    UserOrderEntity entity = new UserOrderEntity();
+    entity.userId = userId;
+    entity.amount = amount;
+    return entity;
   }
 }

@@ -23,4 +23,15 @@ public class UserOrderMenuEntity extends BaseEntity {
   @Column(length = 50, nullable = false)
   @Enumerated(EnumType.STRING)
   private UserOrderMenuStatus status;
+
+  public void setStatus(UserOrderMenuStatus status) {
+    this.status = status;
+  }
+
+  public static UserOrderMenuEntity of(Long userOrderId, Long storeMenuId) {
+    UserOrderMenuEntity entity = new UserOrderMenuEntity();
+    entity.userOrderId = userOrderId;
+    entity.storeMenuId = storeMenuId;
+    return entity;
+  }
 }

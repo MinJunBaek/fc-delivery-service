@@ -31,6 +31,11 @@ public class UserOrderService {
         .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
   }
 
+  public UserOrderEntity getUserOrderWithOutStatusWithThrow(Long id, Long userId) {
+    return userOrderRepository.findFirstByIdAndUserId(id, userId)
+        .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
+  }
+
   // 주문
   public UserOrderEntity order(UserOrderEntity entity) {
     return Optional.ofNullable(entity)

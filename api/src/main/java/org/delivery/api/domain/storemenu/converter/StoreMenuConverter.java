@@ -1,5 +1,6 @@
 package org.delivery.api.domain.storemenu.converter;
 
+import java.util.List;
 import org.delivery.api.common.annotation.Converter;
 import org.delivery.api.common.error.ErrorCode;
 import org.delivery.api.common.exception.ApiException;
@@ -24,5 +25,10 @@ public class StoreMenuConverter {
     }
     StoreMenuResponse response = StoreMenuResponse.from(entity);
     return response;
+  }
+
+  public List<StoreMenuResponse> toResponse(List<StoreMenuEntity> storeMenuEntityList) {
+    List<StoreMenuResponse> storeMenuResponseList = storeMenuEntityList.stream().map(storeMenuEntity -> toResponse(storeMenuEntity)).toList();
+    return storeMenuResponseList;
   }
 }

@@ -24,6 +24,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
+        .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests((requests) -> {
           requests
               .requestMatchers(
@@ -37,8 +38,7 @@ public class SecurityConfig {
 
               // open-api /** 하위 주소는 인증 없이 통과
               .requestMatchers(
-                  "/open-api/**"
-              ).permitAll()
+                  "/open-api/**").permitAll()
 
               // 그 외 모든 요청은 인증 사용
               .anyRequest().authenticated();

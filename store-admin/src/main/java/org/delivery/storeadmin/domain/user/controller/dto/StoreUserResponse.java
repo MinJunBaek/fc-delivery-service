@@ -12,6 +12,7 @@ public class StoreUserResponse {
   private StoreUser storeUser;
   private Store store;
 
+  @Getter
   private static class StoreUser{
     private Long id;
     private String email;
@@ -34,6 +35,7 @@ public class StoreUserResponse {
     }
   }
 
+  @Getter
   private static class Store {
     private Long storeId;
     private String name;

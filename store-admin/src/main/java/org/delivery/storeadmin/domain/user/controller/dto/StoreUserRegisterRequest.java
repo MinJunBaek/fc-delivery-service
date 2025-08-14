@@ -1,6 +1,7 @@
 package org.delivery.storeadmin.domain.user.controller.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import org.delivery.db.storeuser.enums.StoreUserRole;
 
@@ -13,6 +14,6 @@ public class StoreUserRegisterRequest {
   private String email;
   @NotBlank
   private String password;
-  @NotBlank
+  @NotNull
   private StoreUserRole role;
 }

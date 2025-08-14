@@ -32,4 +32,18 @@ public class StoreUserEntity extends BaseEntity {
   private LocalDateTime unRegisteredAt;
   private LocalDateTime lastLoginAt;
 
+  public void register(StoreUserStatus status, String password) {
+    this.status = status;
+    this.password = password;
+    this.registeredAt = LocalDateTime.now();
+  }
+
+  public static StoreUserEntity of(Long storeId, String email, String password, StoreUserRole role) {
+    StoreUserEntity entity = new StoreUserEntity();
+    entity.storeId = storeId;
+    entity.email = email;
+    entity.password = password;
+    entity.role = role;
+    return entity;
+  }
 }

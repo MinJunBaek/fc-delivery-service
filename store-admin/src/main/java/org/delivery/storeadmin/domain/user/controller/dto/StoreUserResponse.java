@@ -6,6 +6,7 @@ import org.delivery.db.store.StoreEntity;
 import org.delivery.db.storeuser.StoreUserEntity;
 import org.delivery.db.storeuser.enums.StoreUserRole;
 import org.delivery.db.storeuser.enums.StoreUserStatus;
+import org.delivery.storeadmin.domain.authorization.model.UserSession;
 
 @Getter
 public class StoreUserResponse {
@@ -33,6 +34,18 @@ public class StoreUserResponse {
       storeUser.lastLoginAt = storeUserEntity.getLastLoginAt();
       return storeUser;
     }
+
+    private static StoreUser from(UserSession userSession) {
+      StoreUser storeUser = new StoreUser();
+      storeUser.id = userSession.getUserId();
+      storeUser.email = userSession.getEmail();
+      storeUser.status = userSession.getStatus();
+      storeUser.role = userSession.getRole();
+      storeUser.registeredAt = userSession.getRegisteredAt();
+      storeUser.unRegisteredAt = userSession.getUnRegisteredAt();
+      storeUser.lastLoginAt = userSession.getLastLoginAt();
+      return storeUser;
+    }
   }
 
   @Getter
@@ -46,12 +59,26 @@ public class StoreUserResponse {
       store.name = storeEntity.getName();
       return store;
     }
+
+    private static Store from(UserSession userSession) {
+      Store store = new Store();
+      store.storeId = userSession.getStoreId();
+      store.name = userSession.getStoreName();
+      return store;
+    }
   }
 
   public static StoreUserResponse of(StoreUserEntity storeUserEntity, StoreEntity storeEntity) {
     StoreUserResponse storeUserResponse = new StoreUserResponse();
     storeUserResponse.storeUser = StoreUserResponse.StoreUser.from(storeUserEntity);
     storeUserResponse.store = StoreUserResponse.Store.from(storeEntity);
+    return storeUserResponse;
+  }
+
+  public static StoreUserResponse from(UserSession userSession) {
+    StoreUserResponse storeUserResponse = new StoreUserResponse();
+    storeUserResponse.storeUser = StoreUserResponse.StoreUser.from(userSession);
+    storeUserResponse.store = StoreUserResponse.Store.from(userSession);
     return storeUserResponse;
   }
 }

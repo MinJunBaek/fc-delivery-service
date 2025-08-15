@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class PageController {
 
-  @RequestMapping(path = {"/main"})
+  @RequestMapping(path = {"/", "/main"})
   public ModelAndView main() {
     return new ModelAndView("main");
   }

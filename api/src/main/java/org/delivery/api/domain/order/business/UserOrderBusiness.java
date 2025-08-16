@@ -7,6 +7,7 @@ import org.delivery.api.domain.order.controller.dto.UserOrderDetailResponse;
 import org.delivery.api.domain.order.controller.dto.UserOrderRequest;
 import org.delivery.api.domain.order.controller.dto.UserOrderResponse;
 import org.delivery.api.domain.order.converter.UserOrderConverter;
+import org.delivery.api.domain.order.producer.UserOrderProducer;
 import org.delivery.api.domain.order.service.UserOrderService;
 import org.delivery.api.domain.ordermenu.converter.UserOrderMenuConverter;
 import org.delivery.api.domain.ordermenu.service.UserOrderMenuService;
@@ -36,6 +37,8 @@ public class UserOrderBusiness {
   private final UserOrderMenuConverter userOrderMenuConverter;
   private final UserOrderMenuService userOrderMenuService;
 
+  private final UserOrderProducer userOrderProducer;
+
   public UserOrderResponse userOrder(User user, UserOrderRequest request) {
     List<StoreMenuEntity> storeMenuEntityList = request.getStoreMenuIdList().stream()
         .map(menu -> storeMenuService.getStoreMenuWithThrow(menu)).toList();
@@ -53,6 +56,9 @@ public class UserOrderBusiness {
     userOrderMenuEntityList.forEach(entity -> {
       userOrderMenuService.order(entity);
     });
+
+    // 비동기로 가맹점에 주문 알리기
+    userOrderProducer.sendOrder(newUserOrderEntity);
 
     return userOrderConverter.toResponse(newUserOrderEntity);
   }

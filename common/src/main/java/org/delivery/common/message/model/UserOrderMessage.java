@@ -1,8 +1,10 @@
 package org.delivery.common.message.model;
 
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 public class UserOrderMessage {
 
   private Long userOrderId;

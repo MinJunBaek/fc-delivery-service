@@ -32,7 +32,7 @@ public class WebConfig implements WebMvcConfigurer {
   private final List<String> SWAGGER = List.of(
       "/swagger-ui.html",
       // "/swagger-ui.index.html",
-      "swagger-ui/**",
+      "/swagger-ui/**",
       "/v3/api-docs/**"
   );
 
